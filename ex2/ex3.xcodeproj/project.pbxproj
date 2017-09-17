@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C16D3021F683A8D000DA26B /* ex2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C16D3021F683A8D000DA26B /* ex3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C16D3061F683A8D000DA26B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C16D3081F683A8D000DA26B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C16D3091F683A8D000DA26B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		2C16D3031F683A8D000DA26B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C16D3021F683A8D000DA26B /* ex2.app */,
+				2C16D3021F683A8D000DA26B /* ex3.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,9 +118,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C16D3011F683A8D000DA26B /* ex2 */ = {
+		2C16D3011F683A8D000DA26B /* ex3 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C16D31C1F683A8D000DA26B /* Build configuration list for PBXNativeTarget "ex2" */;
+			buildConfigurationList = 2C16D31C1F683A8D000DA26B /* Build configuration list for PBXNativeTarget "ex3" */;
 			buildPhases = (
 				2C16D2FE1F683A8D000DA26B /* Sources */,
 				2C16D2FF1F683A8D000DA26B /* Frameworks */,
@@ -130,9 +130,9 @@
 			);
 			dependencies = (
 			);
-			name = ex2;
+			name = ex3;
 			productName = ex2;
-			productReference = 2C16D3021F683A8D000DA26B /* ex2.app */;
+			productReference = 2C16D3021F683A8D000DA26B /* ex3.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -150,7 +150,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2C16D2FD1F683A8C000DA26B /* Build configuration list for PBXProject "ex2" */;
+			buildConfigurationList = 2C16D2FD1F683A8C000DA26B /* Build configuration list for PBXProject "ex3" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -163,7 +163,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C16D3011F683A8D000DA26B /* ex2 */,
+				2C16D3011F683A8D000DA26B /* ex3 */,
 			);
 		};
 /* End PBXProject section */
@@ -316,7 +316,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ex2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.temp.ex2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.temp.ex3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -327,7 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ex2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.temp.ex2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.temp.ex3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -335,7 +335,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C16D2FD1F683A8C000DA26B /* Build configuration list for PBXProject "ex2" */ = {
+		2C16D2FD1F683A8C000DA26B /* Build configuration list for PBXProject "ex3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C16D31A1F683A8D000DA26B /* Debug */,
@@ -344,7 +344,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C16D31C1F683A8D000DA26B /* Build configuration list for PBXNativeTarget "ex2" */ = {
+		2C16D31C1F683A8D000DA26B /* Build configuration list for PBXNativeTarget "ex3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C16D31D1F683A8D000DA26B /* Debug */,
