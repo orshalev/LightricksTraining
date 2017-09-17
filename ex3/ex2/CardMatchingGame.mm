@@ -12,7 +12,6 @@
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong, readwrite) NSString *actionInfo;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
-@property (nonatomic) BOOL mode3MatchEnabled;
 @property (nonatomic, readonly) NSInteger maxChosenCards;
 @end
 
@@ -51,6 +50,13 @@
   return [self initWithCardCount:count usingDeck:deck gameMode:Match2Cards];
 }
 
+-(NSString *)actionInfo {
+  if (!_actionInfo) {
+    _actionInfo = @"New game.";
+  }
+  return _actionInfo;
+}
+
 - (Card *)cardAtIndex:(NSUInteger)index {
   return (index < [self.cards count]) ? self.cards[index] : nil;
 }
@@ -68,7 +74,7 @@ static const int COST_TO_CHOOSE = 1;
   }
 
   if (card.isChosen) {
-    self.actionInfo = [NSString stringWithFormat:@"unchose %@", [card contents]];
+    self.actionInfo = [NSString stringWithFormat:@"Unchose %@", [card contents]];
     card.chosen = NO;
     return;
   }
@@ -86,6 +92,7 @@ static const int COST_TO_CHOOSE = 1;
   card.chosen = YES;
 
   if ([chosenCards count] < self.maxChosenCards - 1) {
+    self.actionInfo = info;
     return;
   }
 
@@ -93,7 +100,6 @@ static const int COST_TO_CHOOSE = 1;
   if (matchScore) {
     self.score += matchScore * MATCH_BONUS;
     card.matched = YES;
-    //card.chosen = NO;
 
     NSString *otherCardsContents = @"";
     for (Card *otherCard in chosenCards) {

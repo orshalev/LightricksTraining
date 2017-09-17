@@ -9,15 +9,35 @@
 #import "GameHistoryViewController.h"
 
 @interface GameHistoryViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextView *textViewOutlet;
 
 @end
 
+
 @implementation GameHistoryViewController
 
+- (NSAttributedString *)historyData {
+  if (!_historyData) {
+    _historyData = [[NSAttributedString alloc] initWithString:@"No history"];
+  }
+  return _historyData;
+}
+
+- (void)setHistory:(NSAttributedString *)historyData {
+  _historyData = historyData;
+  if (self.view.window) {
+    [self updateUI];
+  }
+}
+
+- (void)updateUI {
+  self.textViewOutlet.attributedText = [self historyData];
+}
+
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning {

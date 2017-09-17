@@ -7,18 +7,17 @@
 //
 
 #import "CardGameViewController.h"
+#import "GameHistoryViewController.h"
 
 #import "CardMatchingGame.h"
-/*#import "PlayingCard.h"
-#import "PlayingCardDeck.h"*/
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegControl;
 @property (nonatomic) GameMode mode;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *cardButtons;
+@property (strong, nonatomic) NSAttributedString *historyData;
 @end
 
 @implementation CardGameViewController
@@ -37,6 +36,13 @@
   return _game;
 }
 
+- (NSAttributedString *) historyData {
+  if (!_historyData) {
+    _historyData = [[NSAttributedString alloc] initWithString:@"Game History:\n"];
+  }
+  return _historyData;
+}
+
 // Abstract
 - (Deck *)createDeck {
   return nil;
@@ -50,19 +56,20 @@
 }
 
 
-- (IBAction)touchGameModeSegControl:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([segue.identifier isEqualToString:@"Game History"]) {
+    if ([segue.destinationViewController isKindOfClass:[GameHistoryViewController class]]) {
+      NSLog(@"segueing!\n");
+      GameHistoryViewController *historyController = (GameHistoryViewController *)segue.destinationViewController;
+      historyController.historyData = [self historyData];
 
-  UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
-  NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
-
-  self.mode = (GameMode)selectedSegment;
-  [self resetGame];
+    }
+  }
 }
 
 
 - (IBAction)touchDealButton:(id)sender {
   [self resetGame];
-  self.gameModeSegControl.enabled = YES;
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
@@ -79,10 +86,13 @@
     [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
     [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
     cardButton.enabled = !card.isMatched;
-    self.scoreLabel.text = [NSString stringWithFormat:@"%lld", (long long)self.game.score];
-    NSLog(@"%@",self.game.actionInfo);
-    self.infoLabel.text = [NSString stringWithFormat:@"info:\n%@", self.game.actionInfo];
   }
+  self.scoreLabel.text = [NSString stringWithFormat:@"%lld", (long long)self.game.score];
+  NSLog(@"%@",self.game.actionInfo);
+  self.infoLabel.text = [NSString stringWithFormat:@"info:\n%@", self.game.actionInfo];
+  NSMutableAttributedString *historyMutable = [self.historyData mutableCopy];
+  [historyMutable appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n", self.game.actionInfo]]];
+  self.historyData = historyMutable;
 }
 
 - (NSString *)titleForCard:(Card *)card {

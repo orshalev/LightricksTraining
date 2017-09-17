@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GameHistoryViewController : UIViewController
-
-@property (weak, nonatomic) NSString *historyData;
+@property (strong, nonatomic) NSAttributedString *historyData;
 
 @end
