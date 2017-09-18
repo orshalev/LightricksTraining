@@ -14,7 +14,6 @@
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (nonatomic) GameMode mode;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *cardButtons;
 @property (strong, nonatomic) NSAttributedString *historyData;
@@ -22,16 +21,10 @@
 
 @implementation CardGameViewController
 
-- (GameMode)mode {
-  if (!_mode) {
-    _mode = Match2Cards;
-  }
-  return _mode;
-}
 
 - (CardMatchingGame *) game {
   if (!_game) {
-    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck: [self createDeck] gameMode:self.mode];
+    _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck: [self createDeck]];
   }
   return _game;
 }

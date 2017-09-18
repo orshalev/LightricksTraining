@@ -21,6 +21,9 @@
 		2C2346AF1F690A5B0070CC1B /* CardMatchingGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C2346AE1F690A5B0070CC1B /* CardMatchingGame.mm */; };
 		2CF07ED51F6E7E8D00778CB5 /* MatchismoGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07ED41F6E7E8D00778CB5 /* MatchismoGameViewController.mm */; };
 		2CF07ED81F6E7FFB00778CB5 /* GameHistoryViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07ED71F6E7FFB00778CB5 /* GameHistoryViewController.mm */; };
+		2CF07EDB1F6EABB400778CB5 /* SetGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07EDA1F6EABB400778CB5 /* SetGameViewController.mm */; };
+		2CF07EDE1F6EABF900778CB5 /* SetCardDeck.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07EDD1F6EABF900778CB5 /* SetCardDeck.mm */; };
+		2CF07EE11F6EAC1200778CB5 /* SetCard.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2CF07EE01F6EAC1200778CB5 /* SetCard.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,12 @@
 		2CF07ED41F6E7E8D00778CB5 /* MatchismoGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatchismoGameViewController.mm; sourceTree = "<group>"; };
 		2CF07ED61F6E7FFB00778CB5 /* GameHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryViewController.h; sourceTree = "<group>"; };
 		2CF07ED71F6E7FFB00778CB5 /* GameHistoryViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameHistoryViewController.mm; sourceTree = "<group>"; };
+		2CF07ED91F6EABB400778CB5 /* SetGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGameViewController.h; sourceTree = "<group>"; };
+		2CF07EDA1F6EABB400778CB5 /* SetGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetGameViewController.mm; sourceTree = "<group>"; };
+		2CF07EDC1F6EABF900778CB5 /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardDeck.h; sourceTree = "<group>"; };
+		2CF07EDD1F6EABF900778CB5 /* SetCardDeck.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardDeck.mm; sourceTree = "<group>"; };
+		2CF07EDF1F6EAC1200778CB5 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCard.h; sourceTree = "<group>"; };
+		2CF07EE01F6EAC1200778CB5 /* SetCard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCard.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +96,8 @@
 				2C16D30B1F683A8D000DA26B /* CardGameViewController.h */,
 				2C16D30C1F683A8D000DA26B /* CardGameViewController.mm */,
 				2C16D30E1F683A8D000DA26B /* Main.storyboard */,
+				2CF07ED91F6EABB400778CB5 /* SetGameViewController.h */,
+				2CF07EDA1F6EABB400778CB5 /* SetGameViewController.mm */,
 				2CF07ED61F6E7FFB00778CB5 /* GameHistoryViewController.h */,
 				2CF07ED71F6E7FFB00778CB5 /* GameHistoryViewController.mm */,
 				2CF07ED31F6E7E8D00778CB5 /* MatchismoGameViewController.h */,
@@ -122,6 +133,10 @@
 				2C16D3271F683B79000DA26B /* PlayingCardDeck.mm */,
 				2C2346AD1F690A5B0070CC1B /* CardMatchingGame.h */,
 				2C2346AE1F690A5B0070CC1B /* CardMatchingGame.mm */,
+				2CF07EDC1F6EABF900778CB5 /* SetCardDeck.h */,
+				2CF07EDD1F6EABF900778CB5 /* SetCardDeck.mm */,
+				2CF07EDF1F6EAC1200778CB5 /* SetCard.h */,
+				2CF07EE01F6EAC1200778CB5 /* SetCard.mm */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -203,11 +218,14 @@
 				2C16D30D1F683A8D000DA26B /* CardGameViewController.mm in Sources */,
 				2CF07ED81F6E7FFB00778CB5 /* GameHistoryViewController.mm in Sources */,
 				2C2346AF1F690A5B0070CC1B /* CardMatchingGame.mm in Sources */,
+				2CF07EE11F6EAC1200778CB5 /* SetCard.mm in Sources */,
 				2C16D30A1F683A8D000DA26B /* AppDelegate.m in Sources */,
 				2C16D3071F683A8D000DA26B /* main.m in Sources */,
+				2CF07EDE1F6EABF900778CB5 /* SetCardDeck.mm in Sources */,
 				2C16D3291F683B79000DA26B /* Deck.mm in Sources */,
 				2C16D3131F683A8D000DA26B /* ex2.xcdatamodeld in Sources */,
 				2C16D32B1F683B79000DA26B /* PlayingCardDeck.mm in Sources */,
+				2CF07EDB1F6EABB400778CB5 /* SetGameViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

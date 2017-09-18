@@ -1,0 +1,40 @@
+//
+//  SetCard.m
+//  ex3
+//
+//  Created by Or Shalev on 17/09/2017.
+//  Copyright © 2017 Or Shalev. All rights reserved.
+//
+
+#import "SetCard.h"
+
+@implementation SetCard
+
+
+-(id)initWithDict:(NSDictionary <NSString *, NSString *> *)attributes {
+  if (! (self = [super init])) {
+    return nil;
+  }
+
+  self.cardAttributes = attributes;
+  return self;
+}
+
+
+- (int)match:(NSArray<SetCard *> *)otherCards {
+
+  for (NSString *attribute in kCardAtrributes) {
+    NSMutableSet <NSString *>* attributeSet = [[NSMutableSet alloc] init];
+
+    [attributeSet addObject:self.cardAttributes[attribute]];
+    for (SetCard *otherCard in otherCards) {
+      [attributeSet addObject:otherCard.cardAttributes[attribute]];
+    }
+    if ([attributeSet count] != 1 && [attributeSet count] != [kSetCardValues count]) {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+@end

@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSZ-wa-UWB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199" y="398"/>
+            <point key="canvasLocation" x="3047.1999999999998" y="327.88605697151428"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Uxi-X4-mmo">
@@ -57,7 +57,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kS3-vs-Aej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-562" y="397"/>
+            <point key="canvasLocation" x="-586" y="297"/>
         </scene>
         <!--Matchismo-->
         <scene sceneID="tne-QT-ifu">
@@ -605,17 +605,6 @@
                                     <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="JTP-Dj-FuM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ist-jc-JHN">
-                                <rect key="frame" x="95" y="184" width="40" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="cardback">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="wmv-8L-SII"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFg-VJ-xXW">
                                 <rect key="frame" x="143" y="184" width="40" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -636,17 +625,6 @@
                                 </state>
                                 <connections>
                                     <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="Qj7-5x-iZe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVh-uR-ojJ">
-                                <rect key="frame" x="239" y="184" width="40" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="cardback">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="UmA-hA-4vE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zca-Vg-cVe">
@@ -737,17 +715,6 @@
                                     <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="US8-MR-Gem"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ux7-xa-2Uv">
-                                <rect key="frame" x="95" y="320" width="40" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="cardback">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="dew-Sg-hiL"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diu-Xt-74e">
                                 <rect key="frame" x="143" y="320" width="40" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -768,17 +735,6 @@
                                 </state>
                                 <connections>
                                     <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="3YY-g4-fvd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iD-cN-Nbw">
-                                <rect key="frame" x="239" y="320" width="40" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" backgroundImage="cardback">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchCardButton:" destination="Szj-j7-aog" eventType="touchUpInside" id="Gma-hl-uos"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8f-Rs-D8q">
@@ -895,11 +851,9 @@
                         <outletCollection property="cardButtons" destination="GlE-eS-KWf" id="Y6n-mJ-tXU"/>
                         <outletCollection property="cardButtons" destination="HJB-dI-3Da" id="U8a-gg-4b4"/>
                         <outletCollection property="cardButtons" destination="bV2-0k-Hoa" id="qkS-zp-z8H"/>
-                        <outletCollection property="cardButtons" destination="Ist-jc-JHN" id="gCI-uV-K7T"/>
                         <outletCollection property="cardButtons" destination="rFg-VJ-xXW" id="z64-08-SsR"/>
                         <outletCollection property="cardButtons" destination="6a6-Pd-S8A" id="4EU-WQ-mIv"/>
                         <outletCollection property="cardButtons" destination="Zca-Vg-cVe" id="yMc-b9-Cge"/>
-                        <outletCollection property="cardButtons" destination="CVh-uR-ojJ" id="CE8-as-YsQ"/>
                         <outletCollection property="cardButtons" destination="ODJ-xF-NYG" id="WFq-Sp-g8f"/>
                         <outletCollection property="cardButtons" destination="qrH-Cs-XdD" id="OzT-9L-ZW8"/>
                         <outletCollection property="cardButtons" destination="inm-10-l0g" id="IOL-ag-pPb"/>
@@ -907,10 +861,8 @@
                         <outletCollection property="cardButtons" destination="tV7-F8-LNo" id="w4A-mK-zc4"/>
                         <outletCollection property="cardButtons" destination="nuI-ui-Lqt" id="mYk-Qf-aD3"/>
                         <outletCollection property="cardButtons" destination="lce-Oq-udc" id="G5s-fT-7hA"/>
-                        <outletCollection property="cardButtons" destination="ux7-xa-2Uv" id="ARl-9V-sJI"/>
                         <outletCollection property="cardButtons" destination="diu-Xt-74e" id="irR-11-XKd"/>
                         <outletCollection property="cardButtons" destination="Gf1-OG-fJ2" id="xy8-CI-64R"/>
-                        <outletCollection property="cardButtons" destination="7iD-cN-Nbw" id="PR0-Mw-5t4"/>
                         <outletCollection property="cardButtons" destination="Z8f-Rs-D8q" id="cwH-9b-F8b"/>
                         <outletCollection property="cardButtons" destination="ScV-et-9sd" id="E0I-ad-VwY"/>
                         <outletCollection property="cardButtons" destination="c26-Ls-CYP" id="Y45-VL-yyT"/>
