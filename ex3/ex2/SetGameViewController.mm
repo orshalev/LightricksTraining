@@ -53,17 +53,17 @@
 }
 
 + (void)addToAttributedString:(NSMutableAttributedString *)attributedString shadingByValue:(NSString *)value {
-  CGFloat opacity = 0;
+  CGFloat alpha = 0;
   if ([value isEqualToString:@"Single"]) {
-    opacity = 0.5;
+    alpha = 0.5;
   } else if ([value isEqualToString:@"Duo"]) {
-    opacity = 0.75;
+    alpha = 0.75;
   } else if ([value isEqualToString:@"Triplet"]) {
-    opacity = 1;
+    alpha = 1;
   }
-  UIColor *oldColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:0 effectiveRange:nil];
-  [oldColor colorWithAlphaComponent:opacity];
-  [attributedString addAttribute:NSForegroundColorAttributeName value: oldColor range:NSMakeRange(0, [attributedString length])];
+  UIColor *oldColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:0 longestEffectiveRange:nil inRange:NSMakeRange(0, 1)];
+  [oldColor colorWithAlphaComponent:alpha];
+  [attributedString addAttribute:NSForegroundColorAttributeName value:oldColor range:NSMakeRange(0, [attributedString length])];
 }
 
 + (UIColor *)colorByValue:(NSString *)value {
