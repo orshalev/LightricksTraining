@@ -26,9 +26,7 @@
 
 - (void)setHistory:(NSAttributedString *)historyData {
   _historyData = historyData;
-  if (self.view.window) {
-    [self updateUI];
-  }
+  [self updateUI];
 }
 
 - (void)updateUI {

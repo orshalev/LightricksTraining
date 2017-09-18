@@ -32,7 +32,7 @@
 
 }
 
-+ (NSMutableArray<NSDictionary *> *) fillAttributesDictFromAttributesArray:(NSMutableArray *)attributesArray {
++ (NSMutableArray<NSDictionary *> *)fillAttributesDictFromAttributesArray:(NSMutableArray *)attributesArray {
   NSString *currentAttribute = @"";
   NSMutableArray<NSDictionary *> *currentAttributesDicts = [[NSMutableArray alloc] init]; //of <NSString *, NSString *>
   NSMutableArray<NSDictionary *> *prevAttributesDicts; //of <NSString *, NSString *>
@@ -48,8 +48,8 @@
   return currentAttributesDicts;
 }
 
+// Fill the deck using an array of dicts which will later be used by the SetCard initilizer.
 + (void) fill:(SetCardDeck *) deck {
-
   NSMutableArray <NSString *> *attributesStack = [[NSMutableArray alloc] initWithObjects:kCardAtrributes, nil];
 
   NSMutableArray<NSDictionary *> *filledAttributesDict = [SetCardDeck fillAttributesDictFromAttributesArray:attributesStack];

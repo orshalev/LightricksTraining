@@ -172,6 +172,7 @@
 				TargetAttributes = {
 					2C16D3011F683A8D000DA26B = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = KG6GWND6BG;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -345,6 +346,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KG6GWND6BG;
 				INFOPLIST_FILE = ex2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.temp.ex2;
@@ -356,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = KG6GWND6BG;
 				INFOPLIST_FILE = ex2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.temp.ex2;

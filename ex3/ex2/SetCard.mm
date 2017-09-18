@@ -16,7 +16,7 @@
     return nil;
   }
 
-  self.cardAttributes = attributes;
+  self.attributes = attributes;
   return self;
 }
 
@@ -26,9 +26,9 @@
   for (NSString *attribute in kCardAtrributes) {
     NSMutableSet <NSString *>* attributeSet = [[NSMutableSet alloc] init];
 
-    [attributeSet addObject:self.cardAttributes[attribute]];
+    [attributeSet addObject:self.attributes[attribute]];
     for (SetCard *otherCard in otherCards) {
-      [attributeSet addObject:otherCard.cardAttributes[attribute]];
+      [attributeSet addObject:otherCard.attributes[attribute]];
     }
     if ([attributeSet count] != 1 && [attributeSet count] != [kSetCardValues count]) {
       return 0;

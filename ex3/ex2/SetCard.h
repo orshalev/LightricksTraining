@@ -16,6 +16,6 @@ static NSSet<NSString *> *kCardAtrributes = [NSSet setWithArray:@[@"Number", @"S
 @interface SetCard : Card
 -(id)initWithDict:(NSDictionary <NSString *, NSString *> *)attributes;
 
-@property (nonatomic, strong) NSDictionary <NSString *, NSString *> *cardAttributes;
+@property (nonatomic, strong) NSDictionary <NSString *, NSString *> *attributes;
 
 @end

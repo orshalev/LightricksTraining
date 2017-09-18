@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Deck.h"
+#import "CardMatchingGame.h"
 
 @interface CardGameViewController : UIViewController
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *cardButtons;
+@property (nonatomic, strong) CardMatchingGame *game;
+
 // Abstract
 - (Deck *)createDeck;
+
+- (void)updateUI;
+
 
 @end
 
