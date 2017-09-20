@@ -21,6 +21,13 @@
   return [[PlayingCardDeck alloc] init];
 }
 
+- (CardMatchingGame *) game {
+  if (![super game]) {
+    super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck: [self createDeck]];
+  }
+  return super.game;
+}
+
 -(void)viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
 

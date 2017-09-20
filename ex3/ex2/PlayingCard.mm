@@ -14,6 +14,13 @@ static const uint SUIT_ABS_SCORE = 1;
 static const uint SUIT_REL_SCORE = 2;
 static const uint RANK_ABS_SCORE = 4;
 static const uint RANK_REL_SCORE = 8;
+static NSArray * const kValidSuits = @[@"♥",@"♦",@"♠",@"♣"];
+static NSArray * const kRankStrings = @[@"?",@"A",
+                                        @"2",@"3",@"4",@"5",@"6",
+                                        @"7",@"8",@"9",@"10",
+                                        @"J",@"Q",@"K"];
+
+@synthesize suit = _suit;
 
 - (int)match:(NSArray<PlayingCard *> *)otherCards {
   NSInteger score = 0;
@@ -29,10 +36,6 @@ static const uint RANK_REL_SCORE = 8;
 
   return (int) score;
 }
-
-@synthesize suit = _suit;
-
-static NSArray * const kValidSuits = @[@"♥",@"♦",@"♠",@"♣"];
 
 +(NSArray * const)validSuits
 {
@@ -53,13 +56,6 @@ static NSArray * const kValidSuits = @[@"♥",@"♦",@"♠",@"♣"];
 -(NSString *)suit {
   return _suit ? _suit : @"?";
 }
-
-static NSArray * const kRankStrings = @[@"?",@"A",
-                                        @"2",@"3",@"4",@"5",@"6",
-                                        @"7",@"8",@"9",@"10",
-                                        @"J",@"Q",@"K"];
-
-
 
 +(NSArray * const)rankStrings
 {

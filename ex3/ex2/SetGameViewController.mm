@@ -55,14 +55,14 @@
 + (void)addToAttributedString:(NSMutableAttributedString *)attributedString shadingByValue:(NSString *)value {
   CGFloat alpha = 0;
   if ([value isEqualToString:@"Single"]) {
-    alpha = 0.5;
+    alpha = 0.3;
   } else if ([value isEqualToString:@"Duo"]) {
-    alpha = 0.75;
+    alpha = 0.6;
   } else if ([value isEqualToString:@"Triplet"]) {
     alpha = 1;
   }
   UIColor *oldColor = [attributedString attribute:NSForegroundColorAttributeName atIndex:0 longestEffectiveRange:nil inRange:NSMakeRange(0, 1)];
-  [oldColor colorWithAlphaComponent:alpha];
+  oldColor = [oldColor colorWithAlphaComponent:alpha];
   [attributedString addAttribute:NSForegroundColorAttributeName value:oldColor range:NSMakeRange(0, [attributedString length])];
 }
 
@@ -80,6 +80,13 @@
 // Abstract
 - (Deck *)createDeck {
   return [[SetCardDeck alloc] init];
+}
+
+- (CardMatchingGame *) game {
+  if (![super game]) {
+    super.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck: [self createDeck] gameMode:Match3Cards];
+  }
+  return super.game;
 }
 
 - (void)updateUI {
@@ -114,13 +121,14 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  [super viewDidLoad];
+  [self updateUI];
+  // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 /*

@@ -20,9 +20,17 @@
   return self;
 }
 
+- (NSString *)contents {
+  NSLog(@"contents:%@", self.attributes);
+  NSString *contentsStr = @"";
+  for (NSString *key in self.attributes) {
+    contentsStr = [contentsStr stringByAppendingFormat:@"%@:%@ ", key, self.attributes[key]];
+  }
+  return contentsStr;
+}
 
+// Match score: number of attributes times number of possible values
 - (int)match:(NSArray<SetCard *> *)otherCards {
-
   for (NSString *attribute in kCardAtrributes) {
     NSMutableSet <NSString *>* attributeSet = [[NSMutableSet alloc] init];
 
@@ -34,7 +42,7 @@
       return 0;
     }
   }
-  return 1;
+  return (int)([kCardAtrributes count] * [kSetCardValues count]);
 }
 
 @end

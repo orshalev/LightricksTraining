@@ -89,6 +89,12 @@ static const int COST_TO_CHOOSE = 1;
     }
     [chosenCards addObject:otherCard];
   }
+
+  if ([chosenCards count] == self.maxChosenCards) {
+    self.actionInfo = [NSString stringWithFormat:@"Unchoose a card before choosing a new one."];
+    return;
+  }
+  
   card.chosen = YES;
 
   if ([chosenCards count] < self.maxChosenCards - 1) {
@@ -104,16 +110,13 @@ static const int COST_TO_CHOOSE = 1;
     NSString *otherCardsContents = @"";
     for (Card *otherCard in chosenCards) {
       otherCardsContents = [NSString stringWithFormat:@"%@-%@", otherCardsContents, [otherCard contents]];
-      //otherCard.chosen = NO;
       otherCard.matched = YES;
     }
     info = [NSString stringWithFormat:@"%@ Matched %@%@ for %d points.\n", info, [card contents], otherCardsContents, matchScore * MATCH_BONUS];
     card.matched = YES;
   } else {
-    info = [NSString stringWithFormat:@"%@ Mismatch %@ for %d panelty.\n", info, [card contents], MISMATCH_PENALTY];
+    info = [NSString stringWithFormat:@"%@ Mismatch %@ for %d penalty.\n", info, [card contents], MISMATCH_PENALTY];
     self.score -= MISMATCH_PENALTY;
-    // Unchoose random card.
-    chosenCards[arc4random() % [chosenCards count]].chosen = NO;
     card.chosen = YES;
   }
   self.actionInfo = info;
