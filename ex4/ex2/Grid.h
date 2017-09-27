@@ -28,6 +28,8 @@
 
 @interface Grid : NSObject
 
+- (id)initWithSize:(CGSize)size withAspectRatio:(CGFloat)cellAspectRatio withMinNumberOfCells:(NSUInteger)minimumNumberOfCells;
+
 // required inputs (zero is not a valid value for any of these)
 
 @property (nonatomic) CGSize size;                      // overall available space to put grid into
@@ -53,5 +55,8 @@
 
 - (CGPoint)centerOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
+
+- (CGPoint)centerOfCellAtPos:(NSUInteger)pos;
+- (CGRect)frameOfCellAtpos:(NSUInteger)pos;
 
 @end

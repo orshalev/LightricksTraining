@@ -18,6 +18,18 @@
 
 @implementation Grid
 
+- (id)initWithSize:(CGSize)size withAspectRatio:(CGFloat)cellAspectRatio withMinNumberOfCells:(NSUInteger)minimumNumberOfCells {
+  if (! (self = [super init])) {
+    return nil;
+  }
+
+  self.size = size;
+  self.cellAspectRatio = cellAspectRatio;
+  self.minimumNumberOfCells = minimumNumberOfCells;
+
+  return self;
+}
+
 - (void)validate
 {
     if (self.resolved) return;    // already valid, nothing to do
@@ -115,6 +127,14 @@
     frame.origin.x += column * self.cellSize.width;
     frame.origin.y += row * self.cellSize.height;
     return frame;
+}
+
+- (CGPoint)centerOfCellAtPos:(NSUInteger)pos {
+  return [self centerOfCellAtRow:pos / [self rowCount] inColumn:pos % [self rowCount]];
+}
+
+- (CGRect)frameOfCellAtpos:(NSUInteger)pos {
+  return [self frameOfCellAtRow:pos / [self rowCount] inColumn:pos % [self rowCount]];
 }
 
 - (void)setMinimumNumberOfCells:(NSUInteger)minimumNumberOfCells

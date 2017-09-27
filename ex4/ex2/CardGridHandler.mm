@@ -19,6 +19,21 @@
 @implementation CardGridHandler
 
 /*
+ @property (nonatomic) CGSize size;                      // overall available space to put grid into
+ @property (nonatomic) CGFloat cellAspectRatio;          // width divided by height (of each cell)
+ @property (nonatomic) NSUInteger minimumNumberOfCells;*/
+- (id)initWithSize:(CGSize *)size withAspectRatio:(CGFloat)cellAspectRatio withMinNumberOfCells:(NSUInteger)minimumNumberOfCells {
+  if (! (self = [super init])) {
+    return nil;
+  }
+
+  self.grid = [[Grid alloc] init];
+
+
+  return self;
+}
+
+/*
 @property (nonatomic) CGSize size;                      // overall available space to put grid into
 @property (nonatomic) CGFloat cellAspectRatio;          // width divided by height (of each cell)
 @property (nonatomic) NSUInteger minimumNumberOfCells;

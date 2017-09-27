@@ -7,10 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Grid.h"
 
 @interface CardGridHandler : NSObject
-/*
+
+- (id)initWithSize:(CGSize *)size withAspectRatio:(CGFloat)cellAspectRatio withMinNumberOfCells:(NSUInteger)minimumNumberOfCells;
+
+@property (strong, nonatomic) Grid *grid;
+
 - (CGPoint)centerOfCellAtPos:(NSUInteger)column;
 - (CGRect)frameOfCellAtpos:(NSUInteger)row;
-*/
+
 @end
