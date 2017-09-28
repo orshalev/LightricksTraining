@@ -73,7 +73,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WI3-3h-Fo1" customClass="PlayingCardView">
-                                <rect key="frame" x="100" y="190" width="162" height="262"/>
+                                <rect key="frame" x="58" y="166" width="81" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="okg-DK-OUA" customClass="SetCardView">
+                                <rect key="frame" x="207" y="166" width="81" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WtW-03-q3e" customClass="SetCardView">
+                                <rect key="frame" x="58" y="351" width="81" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNT-hB-dic" customClass="SetCardView">
+                                <rect key="frame" x="207" y="351" width="81" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -98,6 +113,9 @@
                     <navigationItem key="navigationItem" title="Matchismo" id="LXB-YX-Pag"/>
                     <connections>
                         <outlet property="playingCardView" destination="WI3-3h-Fo1" id="s08-4G-6H4"/>
+                        <outlet property="set1" destination="okg-DK-OUA" id="HMQ-n5-CnY"/>
+                        <outlet property="set2" destination="WtW-03-q3e" id="J0k-TG-Ggp"/>
+                        <outlet property="set3" destination="kNT-hB-dic" id="NoY-No-qfy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

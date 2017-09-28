@@ -10,14 +10,16 @@
 #import "Grid.h"
 
 
-static const float kWidthPipFrameRatio = 0.9;
+static const float kWidthPipFrameRatio = 0.7;
 static const float kHeightPipFrameRatio = 0.24;
-static const float kHeightPipDistanceRatio = 0.02;
-static const float k2PipsHeightStartsRatio = 0.24;
-static const float k3PipsHeightStartsRatio = 0.12;
+static const float kHeightPipDistanceRatio = 0.04;
+static const float k2PipsHeightStartsRatio = 0.22;
+static const float k3PipsHeightStartsRatio = 0.08;
 
-static const float kStrokeWidth = 0.2;
+static const float kStrokeWidth = 0.15;
 
+extern const float kSetCornerFontStandardHeight = 180.0;
+extern const float kSetCornerRadius = 12.0;
 
 @interface SetCardView()
 
@@ -70,23 +72,23 @@ static const float kStrokeWidth = 0.2;
 - (CGRect)rectForPip:(NSUInteger)pos {
   CGFloat x,y;
 
-  x = self.frame.size.width * ((1 - kWidthPipFrameRatio) / 2);
+  x = self.bounds.size.width * ((1 - kWidthPipFrameRatio) / 2);
 
   switch ([self.card number]) {
     case 1:
-      y = self.frame.size.height * ((1 - kHeightPipFrameRatio) / 2);
+      y = self.bounds.size.height * ((1 - kHeightPipFrameRatio) / 2);
       break;
     case 2:
-      y = self.frame.size.height * ((k2PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * (pos / ([self.card number] - 1))));
+      y = self.bounds.size.height * ((k2PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * (pos / ([self.card number] - 1))));
       break;
     case 3:
-      y = self.frame.size.height * ((k3PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * (pos / ([self.card number] - 1))));
+      y = self.bounds.size.height * ((k3PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * pos));
       break;
     default:
       return self.bounds;
   }
 
-  return CGRectMake(x, y, self.frame.size.width * kWidthPipFrameRatio, self.frame.size.height * kHeightPipFrameRatio);
+  return CGRectMake(x, y, self.bounds.size.width * kWidthPipFrameRatio, self.bounds.size.height * kHeightPipFrameRatio);
 }
 
 - (void)drawPipAtRect:(CGRect)rect {
@@ -108,51 +110,65 @@ static const float kStrokeWidth = 0.2;
 - (void)drawDiamondAtRect:(CGRect)rect {
   UIBezierPath *path = [[UIBezierPath alloc] init];
   [path moveToPoint:CGPointMake(rect.origin.x,
-                                rect.origin.y + kWidthPipFrameRatio/2)];
-  [path addLineToPoint:CGPointMake(rect.origin.x + kHeightPipFrameRatio/2,
-                                   rect.origin.y + kWidthPipFrameRatio)];
-  [path addLineToPoint:CGPointMake(rect.origin.x + kHeightPipFrameRatio,
-                                   rect.origin.y + kWidthPipFrameRatio/2)];
-  [path addLineToPoint:CGPointMake(rect.origin.x + kHeightPipFrameRatio/2,
+                                rect.origin.y + rect.size.height/2)];
+  [path addLineToPoint:CGPointMake(rect.origin.x + rect.size.width/2,
+                                   rect.origin.y + rect.size.height)];
+  [path addLineToPoint:CGPointMake(rect.origin.x + rect.size.width,
+                                   rect.origin.y + rect.size.height/2)];
+  [path addLineToPoint:CGPointMake(rect.origin.x + rect.size.width/2,
                                    rect.origin.y)];
   [path addLineToPoint:CGPointMake(rect.origin.x,
-                                   rect.origin.y + kWidthPipFrameRatio/2)];
+                                   rect.origin.y + rect.size.height/2)];
 
   path.lineWidth = rect.size.height * kStrokeWidth;
+  [[self.card color] setStroke];
+  [path stroke];
   [self fillPath:path inRect:rect];
 }
 
 // Code adapted from: cs193p.m2m.at
-#define SQUIGGLE_WIDTH 0.12
-#define SQUIGGLE_HEIGHT 0.3
+#define SQUIGGLE_WIDTH 0.25
+#define SQUIGGLE_HEIGHT 0.35
 #define SQUIGGLE_FACTOR 0.8
 - (void)drawSquiggleAtRect:(CGRect)rect {
   UIBezierPath *path = [[UIBezierPath alloc] init];
+  CGPoint point = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
 
-  CGFloat dx = rect.size.width * SQUIGGLE_WIDTH / 2.0;
-  CGFloat dy = rect.size.height * SQUIGGLE_HEIGHT / 2.0;
+  CGFloat dx = self.bounds.size.width * SQUIGGLE_WIDTH / 2.0;
+  CGFloat dy = self.bounds.size.height * SQUIGGLE_HEIGHT / 2.0;
   CGFloat dsqx = dx * SQUIGGLE_FACTOR;
   CGFloat dsqy = dy * SQUIGGLE_FACTOR;
 
-  [path moveToPoint:CGPointMake(rect.origin.x, rect.origin.y)];
-  [path addQuadCurveToPoint:CGPointMake(rect.origin.x + rect.size.width, rect.origin.x)
-               controlPoint:CGPointMake(rect.origin.x + dx - dsqx, rect.origin.y - dsqy)];
-  [path addCurveToPoint:CGPointMake(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height)
-          controlPoint1:CGPointMake(rect.origin.x + rect.size.width + dsqx,  rect.origin.y + dsqy)
-          controlPoint2:CGPointMake(rect.origin.x + rect.size.width - dsqx, rect.origin.y + rect.size.height - dsqy)];
-  [path addQuadCurveToPoint:CGPointMake(rect.origin.x, rect.origin.y + rect.size.height)
-               controlPoint:CGPointMake(rect.origin.x + dx + dsqx, rect.origin.y + rect.size.height + dsqy)];
-  [path addCurveToPoint:CGPointMake(rect.origin.x, rect.origin.y)
-          controlPoint1:CGPointMake(rect.origin.x - dsqx, rect.origin.y + rect.size.height - dsqy)
-          controlPoint2:CGPointMake(rect.origin.x + dsqx, rect.origin.y + dsqy)];
+  [path moveToPoint:CGPointMake(point.x - dx, point.y - dy)];
+  [path addQuadCurveToPoint:CGPointMake(point.x + dx, point.y - dy)
+               controlPoint:CGPointMake(point.x - dsqx, point.y - dy - dsqy)];
+  [path addCurveToPoint:CGPointMake(point.x + dx, point.y + dy)
+          controlPoint1:CGPointMake(point.x + dx + dsqx, point.y - dy + dsqy)
+          controlPoint2:CGPointMake(point.x + dx - dsqx, point.y + dy - dsqy)];
+  [path addQuadCurveToPoint:CGPointMake(point.x - dx, point.y + dy)
+               controlPoint:CGPointMake(point.x + dsqx, point.y + dy + dsqy)];
+  [path addCurveToPoint:CGPointMake(point.x - dx, point.y - dy)
+          controlPoint1:CGPointMake(point.x - dx - dsqx, point.y + dy - dsqy)
+          controlPoint2:CGPointMake(point.x - dx + dsqx, point.y - dy + dsqy)];
+
+  CGAffineTransform transform = CGAffineTransformIdentity;
+  transform = CGAffineTransformTranslate(transform, point.x, point.y);
+  transform = CGAffineTransformRotate(transform, M_PI/2);
+  transform = CGAffineTransformTranslate(transform, -point.x, -point.y);
+
+  [path applyTransform:transform];
 
   path.lineWidth = rect.size.height * kStrokeWidth;
+  [[self.card color] setStroke];
+  [path stroke];
   [self fillPath:path inRect:rect];
 }
 
 - (void)drawOvalAtRect:(CGRect)rect {
   UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:rect.size.height/2];
   path.lineWidth = rect.size.height * kStrokeWidth;
+  [[self.card color] setStroke];
+  [path stroke];
   [self fillPath:path inRect:rect];
 }
 
@@ -182,18 +198,33 @@ static const float kStrokeWidth = 0.2;
   UIBezierPath *pathStripes = [[UIBezierPath alloc] init];
   for (int i = 0; i < 5 ;i++) {
     [pathStripes moveToPoint:CGPointMake(rect.origin.x + i*rect.size.width/5,
-                                         rect.origin.y + i*rect.size.height/5)];
+                                         rect.origin.y)];
     [pathStripes addLineToPoint:CGPointMake(rect.origin.x + (i+1)*rect.size.width/5,
-                                         rect.origin.y + (i+2)*rect.size.height/5)];
+                                         rect.origin.y + rect.size.height)];
 
   }
 
-  pathStripes.lineWidth = self.bounds.size.width * kWidthPipFrameRatio / 5;
+  pathStripes.lineWidth = self.bounds.size.width * kWidthPipFrameRatio / 10;
   [[self.card color] setStroke];
   [pathStripes stroke];
 
   CGContextRestoreGState(context);
 }
+
+
+-(CGFloat)cornerOffset {
+  return [self cornerRadius] / 3.0;
+}
+
+-(CGFloat)cornerRadius {
+  return kSetCornerRadius * [self cornerScaleFactor];
+}
+
+-(CGFloat)cornerScaleFactor {
+  return self.bounds.size.height / kSetCornerFontStandardHeight;
+}
+
+
 
 #pragma mark - Initialization
 -(void)awakeFromNib {

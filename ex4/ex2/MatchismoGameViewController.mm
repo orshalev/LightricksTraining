@@ -10,6 +10,7 @@
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "PlayingCardView.h"
+#import "SetCardView.h"
 
 extern const NSInteger kInitialMatchismoCardCount = 30;
 
@@ -18,7 +19,14 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
 @property (nonatomic, strong) CardMatchingGame *game;
+
+
 @property (strong, nonatomic) IBOutlet PlayingCardView *playingCardView;
+@property (strong, nonatomic) IBOutlet SetCardView *set1;
+@property (strong, nonatomic) IBOutlet SetCardView *set2;
+@property (strong, nonatomic) IBOutlet SetCardView *set3;
+
+
 //@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *cardButtons;
 @property (strong, nonatomic) NSArray<PlayingCard *> *drawnCards;
 //gridObj
@@ -89,16 +97,21 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  [super viewDidLoad];
   self.playingCardView.suit = @"♥︎";
   self.playingCardView.rank = 13;
   self.playingCardView.faceUp = YES;
-    // Do any additional setup after loading the view.
+
+  self.set1.card = [[SetCard alloc] initWithNumber:1 withSymbol:1 withStriping:1 withColor:[UIColor redColor]];
+  self.set2.card = [[SetCard alloc] initWithNumber:2 withSymbol:2 withStriping:2 withColor:[UIColor greenColor]];
+  self.set3.card = [[SetCard alloc] initWithNumber:3 withSymbol:3 withStriping:3 withColor:[UIColor purpleColor]];
+
+  // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 /*

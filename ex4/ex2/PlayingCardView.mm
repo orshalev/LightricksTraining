@@ -8,6 +8,11 @@
 
 #import "PlayingCardView.h"
 
+
+extern const float kCornerFontStandardHeight = 180.0;
+extern const float kCornerRadius = 12.0;
+
+
 @implementation PlayingCardView
 
 
@@ -80,9 +85,6 @@
 }
 
 
-extern const float kCornerFontStandardHeight = 180.0;
-extern const float kCornerRadius = 12.0;
-
 -(CGFloat)cornerOffset {
   return [self cornerRadius] / 3.0;
 }
@@ -117,5 +119,6 @@ extern const float kCornerRadius = 12.0;
 
   return self;
 }
+
 
 @end

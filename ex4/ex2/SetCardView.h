@@ -13,6 +13,6 @@
 
 -(instancetype)initWithFrame:(CGRect)frame;
 
-@property (weak, nonatomic) SetCard *card;
+@property (strong, nonatomic) SetCard *card;
 
 @end
