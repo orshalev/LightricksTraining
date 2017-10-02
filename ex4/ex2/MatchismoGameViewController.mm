@@ -21,7 +21,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) IBOutlet UIView *gridView;
 
-@property (strong, nonatomic) NSMutableArray<PlayingCard *> *cards;
+@property (strong, nonatomic) NSMutableIndexSet *activeCardsIndexes;
 @property (strong, nonatomic) NSMutableArray<PlayingCardView *> *cardViews;
 
 @property (strong, nonatomic) CardMatchingGame *game;
@@ -43,15 +43,14 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 }
 
 - (void)resetGame {
-  NSMutableIndexSet *cardsPosForRemoval = [[NSMutableIndexSet alloc] init];
-  [cardsPosForRemoval addIndexesInRange:NSMakeRange(0, [self.cards count])];
+  NSMutableIndexSet *cardsPosForRemoval = self.activeCardsIndexes;
   MatchismoGameViewController __weak *weakSelf = self;
   [self removeCards:cardsPosForRemoval withCompletionTask:@selector(initNewGame) fromObject:weakSelf];
 }
 
 // Call only after fully removing all existing cards.
 - (void)initNewGame {
-  self.game = nil;
+  self.game = [[CardMatchingGame alloc] initWithCardCount:kInitialMatchismoCardCount usingDeck:[MatchismoGameViewController createDeck]];
   [self initGridView];
   [self initCards];
   [self initCardViews];
@@ -66,37 +65,19 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   }
 }
 
-
 - (void)initCardViews {
   self.cardViews = [[NSMutableArray alloc] init];
   for (int i = 0; i < kInitialMatchismoCardCount; i++) {
-    PlayingCard *card =(PlayingCard *) [self.game cardAtIndex:i];
-    PlayingCardView *cardView = [self addViewForCard:card];
-    [_cardViews addObject:cardView];
+    PlayingCardView *cardView = [self addViewForCard:i];
+    [self.cardViews addObject:cardView];
     [self.view addSubview:cardView];
   }
   [self updateCardsOnGrid];
 }
 
 -(void)initCards {
-  for (int i = 0; i < kInitialMatchismoCardCount; i++) {
-    PlayingCard *card =(PlayingCard *) [self.game cardAtIndex:i];
-    [self.cards addObject:card];
-  }
-}
-
--(NSMutableArray<PlayingCard *> *)cards {
-  if (!_cards) {
-    _cards = [[NSMutableArray alloc] init];
-  }
-  return _cards;
-}
-
-- (CardMatchingGame *)game {
-  if (!_game) {
-    _game = [[CardMatchingGame alloc] initWithCardCount:kInitialMatchismoCardCount usingDeck:[MatchismoGameViewController createDeck]];
-  }
-  return _game;
+  self.activeCardsIndexes = [[NSMutableIndexSet alloc] init];
+  [self.activeCardsIndexes addIndexesInRange:NSMakeRange(0, kInitialMatchismoCardCount)];
 }
 
 - (UIDynamicAnimator *)animator {
@@ -113,8 +94,16 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   return _stacked;
 }
 
-- (PlayingCardView *)addViewForCard:(PlayingCard *)card{
+- (void)addCard:(NSUInteger)cardIndex {
+  [self.activeCardsIndexes addIndex:cardIndex];
+  PlayingCardView *cardView = [self addViewForCard:cardIndex];
+  [self.view addSubview:cardView];
+  [self.cardViews addObject:cardView];
+}
 
+- (PlayingCardView *)addViewForCard:(NSUInteger)cardIndex{
+
+  PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:cardIndex];
   CGRect frameForCard = [self.grid frameOfCellAtPos:0];
   PlayingCardView *newCardView = [[PlayingCardView alloc] initWithFrame:frameForCard];
 
@@ -122,16 +111,11 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   newCardView.suit = card.suit;
   newCardView.rank = card.rank;
   newCardView.faceUp = NO;
+  newCardView.cardNum = cardIndex;
 
   return newCardView;
 }
 
-- (void)addCard:(PlayingCard *)card {
-  [self.cards addObject:card];
-  PlayingCardView *cardView = [self addViewForCard:card];
-  [self.view addSubview:cardView];
-  [self.cardViews addObject:cardView];
-}
 
 - (void)handleSingleTapStack:(UITapGestureRecognizer *)recognizer
 {
@@ -158,12 +142,11 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
                      NSUInteger idx = cardsPosForRemoval.firstIndex;
                      while (idx != NSNotFound) {
                        PlayingCardView *view = [weakSelf.cardViews objectAtIndex:idx];
-                       view.center = CGPointMake(0, self.view.frame.size.height + view.frame.size.height * 1.5);
                        [view removeFromSuperview];
                        idx = [cardsPosForRemoval indexGreaterThanIndex:idx];
                      }
-                     [weakSelf.cardViews removeObjectsAtIndexes:cardsPosForRemoval];
-                     [weakSelf.cards removeObjectsAtIndexes:cardsPosForRemoval];
+                     //[weakSelf.cardViews removeObjectsAtIndexes:cardsPosForRemoval];
+                     [weakSelf.activeCardsIndexes removeIndexes:cardsPosForRemoval];
                      [weakSelf updateCardsOnGrid];
                      if (func) {
                        [object performSelector:func];
@@ -174,9 +157,13 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 - (void)updateCardsOnGrid {
   MatchismoGameViewController __weak *weakSelf = self;
   [UIView animateWithDuration:0.5 animations: ^{
-    for (int i = 0; i < [self.cards count]; i++) {
-      CGRect frame = [weakSelf.grid frameOfCellAtPos:i];
-      weakSelf.cardViews[i].frame = frame;
+    NSUInteger idx = weakSelf.activeCardsIndexes.firstIndex;
+    NSUInteger cardGridPos = 0;
+    while (idx != NSNotFound) {
+      CGRect frame = [weakSelf.grid frameOfCellAtPos:cardGridPos];
+      weakSelf.cardViews[idx].frame = frame;
+      cardGridPos++;
+      idx = [weakSelf.activeCardsIndexes indexGreaterThanIndex:idx];
     }
   }];
 }
@@ -184,7 +171,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 - (BOOL)flipCard:(UIView *)cardView {
   NSInteger chosenButtonIndex = [self.cardViews indexOfObject:(PlayingCardView *)cardView];
   [self.game chooseCardAtIndex:chosenButtonIndex];
-  BOOL shouldFaceUpAfterAction = self.cards[chosenButtonIndex].isChosen;
+  BOOL shouldFaceUpAfterAction = [self.game cardAtIndex:chosenButtonIndex].isChosen;
   [self updateUI];
   return shouldFaceUpAfterAction;
 }
@@ -234,14 +221,17 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   NSLog(@"%@",self.game.actionInfo);
 
   NSMutableIndexSet *cardsForRemoval = [[NSMutableIndexSet alloc] init];
-  for (NSUInteger i = 0; i < [self.cardViews count]; i++) {
-    PlayingCard * card =(PlayingCard *) [self.game cardAtIndex:i];
+
+  NSUInteger idx = self.activeCardsIndexes.firstIndex;
+  while (idx != NSNotFound) {
+    PlayingCard * card =(PlayingCard *) [self.game cardAtIndex:idx];
     if (card.isMatched && card.isChosen) {
-      [cardsForRemoval addIndex:i];
+      [cardsForRemoval addIndex:idx];
     }
-    if (self.cardViews[i].faceUp != card.isChosen) {
-      self.cardViews[i].faceUp = card.isChosen;
+    if (self.cardViews[idx].faceUp != card.isChosen) {
+      self.cardViews[idx].faceUp = card.isChosen;
     }
+    idx = [self.activeCardsIndexes indexGreaterThanIndex:idx];
   }
 
   if ([cardsForRemoval count]) {
