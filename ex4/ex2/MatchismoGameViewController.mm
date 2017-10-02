@@ -42,6 +42,22 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   return [[PlayingCardDeck alloc] init];
 }
 
+- (void)resetGame {
+  NSMutableIndexSet *cardsPosForRemoval = [[NSMutableIndexSet alloc] init];
+  [cardsPosForRemoval addIndexesInRange:NSMakeRange(0, [self.cards count])];
+  MatchismoGameViewController __weak *weakSelf = self;
+  [self removeCards:cardsPosForRemoval withCompletionTask:@selector(initNewGame) fromObject:weakSelf];
+}
+
+// Call only after fully removing all existing cards.
+- (void)initNewGame {
+  self.game = nil;
+  [self initGridView];
+  [self initCards];
+  [self initCardViews];
+  [self updateUI];
+}
+
 - (void)initGridView {
   self.grid = [[Grid alloc] initWithSize:self.gridView.frame.size withAspectRatio:0.666 withMinNumberOfCells:kInitialMatchismoCardCount];
   self.grid.origin = self.gridView.frame.origin;
@@ -123,16 +139,11 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   cardView.faceUp = !cardView.faceUp;
 }
 
-- (void)removeAllCards {
-
-  NSMutableIndexSet *cardsPosForRemoval = [[NSMutableIndexSet alloc] init];
-  for (NSUInteger i = 0; i < [self.cards count]; i++) {
-    [cardsPosForRemoval addIndex:i];
-  }
-  [self removeCards:cardsPosForRemoval];
+- (void)removeCards:(NSIndexSet *)cardsPosForRemoval {
+  [self removeCards:cardsPosForRemoval withCompletionTask:nil fromObject:nil];
 }
 
-- (void)removeCards:(NSIndexSet *)cardsPosForRemoval {
+- (void)removeCards:(NSIndexSet *)cardsPosForRemoval withCompletionTask:(SEL)func fromObject:(id)object {
   MatchismoGameViewController __weak *weakSelf = self;
   [UIView animateWithDuration:0.5
                    animations:^{
@@ -145,9 +156,6 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
                    }
                    completion:^(BOOL finished) {
                      NSUInteger idx = cardsPosForRemoval.firstIndex;
-                     if (idx == NSNotFound) {
-                       return;
-                     }
                      while (idx != NSNotFound) {
                        PlayingCardView *view = [weakSelf.cardViews objectAtIndex:idx];
                        view.center = CGPointMake(0, self.view.frame.size.height + view.frame.size.height * 1.5);
@@ -157,6 +165,9 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
                      [weakSelf.cardViews removeObjectsAtIndexes:cardsPosForRemoval];
                      [weakSelf.cards removeObjectsAtIndexes:cardsPosForRemoval];
                      [weakSelf updateCardsOnGrid];
+                     if (func) {
+                       [object performSelector:func];
+                     }
                    }];
 }
 
@@ -169,11 +180,13 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
     }
   }];
 }
+
 - (BOOL)flipCard:(UIView *)cardView {
   NSInteger chosenButtonIndex = [self.cardViews indexOfObject:(PlayingCardView *)cardView];
   [self.game chooseCardAtIndex:chosenButtonIndex];
+  BOOL shouldFaceUpAfterAction = self.cards[chosenButtonIndex].isChosen;
   [self updateUI];
-  return (self.cards[chosenButtonIndex].isChosen && !self.cards[chosenButtonIndex].isMatched);
+  return shouldFaceUpAfterAction;
 }
 
 - (IBAction)pinch:(UIPinchGestureRecognizer *)sender {
@@ -216,15 +229,6 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 
 
 
-- (void)resetGame {
-  [self removeAllCards];
-  self.game = nil;
-  [self initGridView];
-  [self initCards];
-  [self initCardViews];
-  [self updateUI];
-}
-
 - (void)updateUI {
   self.scoreLabel.text = [NSString stringWithFormat:@"Score: %.4lld", (long long)self.game.score];
   NSLog(@"%@",self.game.actionInfo);
@@ -232,10 +236,10 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   NSMutableIndexSet *cardsForRemoval = [[NSMutableIndexSet alloc] init];
   for (NSUInteger i = 0; i < [self.cardViews count]; i++) {
     PlayingCard * card =(PlayingCard *) [self.game cardAtIndex:i];
-    if (card.isMatched) {
+    if (card.isMatched && card.isChosen) {
       [cardsForRemoval addIndex:i];
     }
-    if ((card.isChosen && !card.isMatched) != self.cardViews[i].faceUp) {
+    if (self.cardViews[i].faceUp != card.isChosen) {
       self.cardViews[i].faceUp = card.isChosen;
     }
   }
@@ -243,7 +247,6 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   if ([cardsForRemoval count]) {
     [self removeCards:cardsForRemoval];
   }
-  
 }
 
 
@@ -262,7 +265,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   UITapGestureRecognizer *tapStackRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapStack:)];
   [self.view addGestureRecognizer:tapStackRecognizer];
 
-  [self resetGame];
+  [self initNewGame];
   // Do any additional setup after loading the view.
 }
 
