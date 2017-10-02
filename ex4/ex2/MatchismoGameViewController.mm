@@ -28,6 +28,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 @property (strong, nonatomic) Grid* grid;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
+@property (strong, nonatomic) NSMutableArray<UIAttachmentBehavior *> *attachments;
 
 @property (nonatomic) BOOL stacked;
 
@@ -78,6 +79,13 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 -(void)initCards {
   self.activeCardsIndexes = [[NSMutableIndexSet alloc] init];
   [self.activeCardsIndexes addIndexesInRange:NSMakeRange(0, kInitialMatchismoCardCount)];
+}
+
+-(NSMutableArray<UIAttachmentBehavior *> *)attachments {
+  if (!_attachments) {
+    _attachments = [[NSMutableArray alloc] init];
+  }
+  return _attachments;
 }
 
 - (UIDynamicAnimator *)animator {
@@ -180,7 +188,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   self.stacked = YES;
   CGPoint gesturePoint = [sender locationInView:self.view];
   if (sender.state == UIGestureRecognizerStateBegan) {
-    [self animatePinchGroupCards];
+    [self animatePinchGroupCards:gesturePoint];
     [self attachCardsToPoint:gesturePoint];
   } else if (sender.state == UIGestureRecognizerStateChanged) {
     [self attachCardsToPoint:gesturePoint];
@@ -202,16 +210,46 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 
 
 #pragma mark - Animations
-- (void)animatePinchGroupCards {
+#define DIAGONAL_OFFSET_PERCENTAGE 0.1
 
+- (void)animatePinchGroupCards:(CGPoint)point {
+  MatchismoGameViewController __weak *weakSelf = self;
+  [UIView animateWithDuration:0.5 animations: ^{
+    NSUInteger idx = weakSelf.activeCardsIndexes.firstIndex;
+    CGPoint offset = point;
+    while (idx != NSNotFound) {
+      PlayingCardView *view = self.cardViews[idx];
+      offset.x += self.grid.cellSize.width * DIAGONAL_OFFSET_PERCENTAGE;
+      offset.y += self.grid.cellSize.height * DIAGONAL_OFFSET_PERCENTAGE;
+
+      [view setFrame:{point, view.frame.size}];
+
+      idx = [weakSelf.activeCardsIndexes indexGreaterThanIndex:idx];
+    }
+  }];
 }
 
-- (void)attachCardsToPoint:(CGPoint)point {
 
+- (void)attachCardsToPoint:(CGPoint)point {
+  NSUInteger idx = self.activeCardsIndexes.firstIndex;
+  while (idx != NSNotFound) {
+    PlayingCardView *view = self.cardViews[idx];
+    point.x += self.grid.cellSize.width * DIAGONAL_OFFSET_PERCENTAGE;
+    point.y += self.grid.cellSize.height * DIAGONAL_OFFSET_PERCENTAGE;
+
+    UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:view attachedToAnchor:point];
+    [self.animator addBehavior:attachment];
+    [self.attachments addObject:attachment];
+
+    idx = [self.activeCardsIndexes indexGreaterThanIndex:idx];
+  }
 }
 
 - (void)removeAttachmentCards {
-
+  for (UIAttachmentBehavior *attachment in self.attachments) {
+    [self.animator removeBehavior:attachment];
+  }
+  self.attachments = nil;
 }
 
 
