@@ -22,6 +22,11 @@ static NSArray * const kRankStrings = @[@"?",
 
 @synthesize suit = _suit;
 
+-(BOOL)isEqual:(PlayingCard *)object {
+  return (self.rank == object.rank &&
+          [self.suit isEqualToString:object.suit]);
+}
+
 - (int)match:(NSArray<PlayingCard *> *)otherCards {
   NSInteger score = 0;
   NSUInteger cardCount = [otherCards count] + 1;

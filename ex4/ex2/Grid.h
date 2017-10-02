@@ -37,6 +37,7 @@
 @property (nonatomic) NSUInteger minimumNumberOfCells;
 
 // optional inputs (non-positive values are ignored)
+@property (nonatomic) CGPoint origin;
 
 @property (nonatomic) CGFloat minCellWidth;
 @property (nonatomic) CGFloat maxCellWidth;     // ignored if less than minCellWidth
@@ -57,6 +58,6 @@
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
 - (CGPoint)centerOfCellAtPos:(NSUInteger)pos;
-- (CGRect)frameOfCellAtpos:(NSUInteger)pos;
+- (CGRect)frameOfCellAtPos:(NSUInteger)pos;
 
 @end

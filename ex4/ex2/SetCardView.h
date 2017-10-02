@@ -9,10 +9,27 @@
 #import <UIKit/UIKit.h>
 #import "SetCard.h"
 
+#define SET_NUMBER_OF_ATTRIBUTE_VALUES 3
+
+typedef NS_ENUM(NSUInteger, SetSymbol) {
+  diamondSymbol = 1,
+  squiggleSymbol,
+  ovalSymbol
+};
+
+typedef NS_ENUM(NSUInteger, SetStriping) {
+  solidStriping = 1,
+  stripedStriping,
+  openStriping
+};
+
 @interface SetCardView : UIView
 
 -(instancetype)initWithFrame:(CGRect)frame;
 
-@property (strong, nonatomic) SetCard *card;
+@property (nonatomic) NSUInteger number;
+@property (nonatomic) SetSymbol symbol;
+@property (nonatomic) SetStriping striping;
+@property (nonatomic) UIColor *color;
 
 @end

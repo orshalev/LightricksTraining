@@ -31,19 +31,27 @@ extern const float kSetCornerRadius = 12.0;
 
 #pragma mark - Properties
 
--(void)setCard:(SetCard *)card {
-  _card = card;
+
+-(void)setNumber:(NSUInteger)number {
+  _number = number;
   [self setNeedsDisplay];
 }
-/*
--(Grid *)grid {
-  if (!_grid) {
-    _grid = [[Grid alloc] initWithSize:self.frame.size
-                  withAspectRatio:self.frame.size.height / self.frame.size.width
-                  withMinNumberOfCells:self.card.number];
-  }
-  return _grid;
-}*/
+
+-(void)setSymbol:(SetSymbol)symbol {
+  _symbol = symbol;
+  [self setNeedsDisplay];
+}
+
+-(void)setStriping:(SetStriping)striping {
+  _striping = striping;
+  [self setNeedsDisplay];
+}
+
+-(void)setColor:(UIColor *)color {
+  _color = color;
+  [self setNeedsDisplay];
+}
+
 
 #pragma mark - Drawing
 - (void)drawRect:(CGRect)rect {
@@ -63,7 +71,7 @@ extern const float kSetCornerRadius = 12.0;
 
 
 - (void)drawPips {
-  for (NSUInteger i = 0; i < [self.card number]; i++) {
+  for (NSUInteger i = 0; i < [self number]; i++) {
     CGRect pipRect = [self rectForPip:i];
     [self drawPipAtRect:pipRect];
   }
@@ -74,12 +82,12 @@ extern const float kSetCornerRadius = 12.0;
 
   x = self.bounds.size.width * ((1 - kWidthPipFrameRatio) / 2);
 
-  switch ([self.card number]) {
+  switch ([self number]) {
     case 1:
       y = self.bounds.size.height * ((1 - kHeightPipFrameRatio) / 2);
       break;
     case 2:
-      y = self.bounds.size.height * ((k2PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * (pos / ([self.card number] - 1))));
+      y = self.bounds.size.height * ((k2PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * (pos / ([self number] - 1))));
       break;
     case 3:
       y = self.bounds.size.height * ((k3PipsHeightStartsRatio + (kHeightPipDistanceRatio + kHeightPipFrameRatio) * pos));
@@ -92,7 +100,7 @@ extern const float kSetCornerRadius = 12.0;
 }
 
 - (void)drawPipAtRect:(CGRect)rect {
-  switch ([self.card symbol]) {
+  switch ([self symbol]) {
     case diamondSymbol:
       [self drawDiamondAtRect:rect];
       break;
@@ -117,11 +125,10 @@ extern const float kSetCornerRadius = 12.0;
                                    rect.origin.y + rect.size.height/2)];
   [path addLineToPoint:CGPointMake(rect.origin.x + rect.size.width/2,
                                    rect.origin.y)];
-  [path addLineToPoint:CGPointMake(rect.origin.x,
-                                   rect.origin.y + rect.size.height/2)];
+  [path closePath];
 
   path.lineWidth = rect.size.height * kStrokeWidth;
-  [[self.card color] setStroke];
+  [[self color] setStroke];
   [path stroke];
   [self fillPath:path inRect:rect];
 }
@@ -159,7 +166,7 @@ extern const float kSetCornerRadius = 12.0;
   [path applyTransform:transform];
 
   path.lineWidth = rect.size.height * kStrokeWidth;
-  [[self.card color] setStroke];
+  [[self color] setStroke];
   [path stroke];
   [self fillPath:path inRect:rect];
 }
@@ -167,15 +174,15 @@ extern const float kSetCornerRadius = 12.0;
 - (void)drawOvalAtRect:(CGRect)rect {
   UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:rect.size.height/2];
   path.lineWidth = rect.size.height * kStrokeWidth;
-  [[self.card color] setStroke];
+  [[self color] setStroke];
   [path stroke];
   [self fillPath:path inRect:rect];
 }
 
 - (void)fillPath:(UIBezierPath *)path inRect:(CGRect)rect {
-  switch ([self.card striping]) {
+  switch ([self striping]) {
     case solidStriping:
-      [[self.card color] setFill];
+      [[self color] setFill];
       [path fill];
       break;
     case stripedStriping:
@@ -205,7 +212,7 @@ extern const float kSetCornerRadius = 12.0;
   }
 
   pathStripes.lineWidth = self.bounds.size.width * kWidthPipFrameRatio / 10;
-  [[self.card color] setStroke];
+  [[self color] setStroke];
   [pathStripes stroke];
 
   CGContextRestoreGState(context);
@@ -240,11 +247,11 @@ extern const float kSetCornerRadius = 12.0;
 
 
 -(instancetype)initWithFrame:(CGRect)frame {
-  if (! (self = [super init])) {
+  if (! (self = [super initWithFrame:frame])) {
     return nil;
   }
 
-  /**/
+  [self setup];
 
   return self;
 }

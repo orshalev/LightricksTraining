@@ -14,21 +14,27 @@ extern const float kCornerRadius = 12.0;
 
 
 @implementation PlayingCardView
-
+@synthesize delegate;
 
 #pragma mark - Properties
-- (void)setSuit:(NSString *)suit {
-  _suit = suit;
-  [self setNeedsDisplay];
-}
 
-- (void)setRank:(NSUInteger)rank {
+-(void)setRank:(NSUInteger)rank {
   _rank = rank;
   [self setNeedsDisplay];
 }
 
-- (void)setFaceUp:(BOOL)faceUp {
+-(void)setSuit:(NSString *)suit {
+  _suit = suit;
+  [self setNeedsDisplay];
+}
+
+-(void)setFaceUp:(BOOL)faceUp {
+  if(faceUp == self.faceUp) {
+    // Animate no flipping?
+    return;
+  }
   _faceUp = faceUp;
+  // Animate flipping.
   [self setNeedsDisplay];
 }
 
@@ -59,7 +65,7 @@ extern const float kCornerRadius = 12.0;
   cornerFont = [cornerFont fontWithSize:cornerFont.pointSize * [self cornerScaleFactor]];
 
   NSString *cornerNonattributedText = [NSString stringWithFormat:@"%@\n%@",
-                                       [self rankAsString], self.suit];
+                                       [self rankAsString], [self suit]];
   NSAttributedString *cornerAttributedText = [[NSAttributedString alloc]
                                               initWithString:cornerNonattributedText
                                               attributes:@{NSFontAttributeName:cornerFont,
@@ -81,7 +87,7 @@ extern const float kCornerRadius = 12.0;
   return @[@"?",
            @"A", @"2", @"3", @"4", @"5",
            @"6", @"7", @"8", @"9", @"10",
-           @"J", @"Q", @"K"][self.rank];
+           @"J", @"Q", @"K"][[self rank]];
 }
 
 
@@ -97,6 +103,15 @@ extern const float kCornerRadius = 12.0;
   return self.bounds.size.height / kCornerFontStandardHeight;
 }
 
+
+#pragma mark - Gestures
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+  //PlayingCardView *cardView = (PlayingCardView *)recognizer.view;
+  self.faceUp = [delegate flipCard:self];
+}
+
+
 #pragma mark - Initialization
 -(void)awakeFromNib {
   [super awakeFromNib];
@@ -107,15 +122,21 @@ extern const float kCornerRadius = 12.0;
   self.backgroundColor = nil;
   self.opaque = NO;
   self.contentMode = UIViewContentModeRedraw;
+
+  UITapGestureRecognizer *singleFingerTap =
+  [[UITapGestureRecognizer alloc] initWithTarget:self
+                                          action:@selector(handleSingleTap:)];
+  [self addGestureRecognizer:singleFingerTap];
+
 }
 
 
 -(instancetype)initWithFrame:(CGRect)frame {
-  if (! (self = [super init])) {
+  if (! (self = [super initWithFrame:frame])) {
     return nil;
   }
 
-  /**/
+  [self setup];
 
   return self;
 }

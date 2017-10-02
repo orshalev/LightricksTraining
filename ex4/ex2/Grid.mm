@@ -23,9 +23,12 @@
     return nil;
   }
 
-  self.size = size;
   self.cellAspectRatio = cellAspectRatio;
+  self.size = size;
   self.minimumNumberOfCells = minimumNumberOfCells;
+  self.origin = CGPointMake(0, 0);
+
+  [self validate];
 
   return self;
 }
@@ -115,7 +118,7 @@
 
 - (CGPoint)centerOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column
 {
-    CGPoint center = CGPointMake(self.cellSize.width/2, self.cellSize.height/2);
+    CGPoint center = CGPointMake(self.origin.x + self.cellSize.width/2, self.origin.y + self.cellSize.height/2);
     center.x += column * self.cellSize.width;
     center.y += row * self.cellSize.height;
     return center;
@@ -123,18 +126,18 @@
 
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column
 {
-    CGRect frame = CGRectMake(0, 0, self.cellSize.width, self.cellSize.height);
+    CGRect frame = CGRectMake(self.origin.x, self.origin.y, self.cellSize.width, self.cellSize.height);
     frame.origin.x += column * self.cellSize.width;
     frame.origin.y += row * self.cellSize.height;
     return frame;
 }
 
 - (CGPoint)centerOfCellAtPos:(NSUInteger)pos {
-  return [self centerOfCellAtRow:pos / [self rowCount] inColumn:pos % [self rowCount]];
+  return [self centerOfCellAtRow:pos/[self columnCount] inColumn:pos%[self columnCount]];
 }
 
-- (CGRect)frameOfCellAtpos:(NSUInteger)pos {
-  return [self frameOfCellAtRow:pos / [self rowCount] inColumn:pos % [self rowCount]];
+- (CGRect)frameOfCellAtPos:(NSUInteger)pos {
+  return [self frameOfCellAtRow:pos/[self columnCount] inColumn:pos%[self columnCount]];
 }
 
 - (void)setMinimumNumberOfCells:(NSUInteger)minimumNumberOfCells

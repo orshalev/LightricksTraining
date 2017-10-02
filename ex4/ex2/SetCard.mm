@@ -17,8 +17,8 @@
   }
 
   self.number = number;
-  self.symbol = (SetSymbol) symbol;
-  self.striping = (SetStriping) striping;
+  self.symbol = symbol;
+  self.striping = striping;
   self.color = color;
 
   return self;

@@ -83,11 +83,10 @@ static const int COST_TO_CHOOSE = 1;
   self.score -= COST_TO_CHOOSE;
 
   NSMutableArray<Card *> *chosenCards = [[NSMutableArray<Card *> alloc] init];
-  for (Card * otherCard in self.cards) {
-    if (!otherCard.isChosen || otherCard.isMatched) {
-      continue;
+  for (Card *otherCard in self.cards) {
+    if (otherCard.isChosen && !otherCard.isMatched) {
+      [chosenCards addObject:otherCard];
     }
-    [chosenCards addObject:otherCard];
   }
 
   if ([chosenCards count] == self.maxChosenCards) {
@@ -113,7 +112,6 @@ static const int COST_TO_CHOOSE = 1;
       otherCard.matched = YES;
     }
     info = [NSString stringWithFormat:@"%@ Matched %@%@ for %d points.\n", info, [card contents], otherCardsContents, matchScore * MATCH_BONUS];
-    card.matched = YES;
   } else {
     info = [NSString stringWithFormat:@"%@ Mismatch %@ for %d penalty.\n", info, [card contents], MISMATCH_PENALTY];
     self.score -= MISMATCH_PENALTY;

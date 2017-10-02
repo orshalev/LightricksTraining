@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayingCard.h"
+#import "MatchismoGameViewController.h"
+#import "GameViewControllerDelegate.h"
 
 @interface PlayingCardView : UIView
 
--(instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)initWithFrame:(CGRect)frame;
 
+@property (strong, nonatomic) NSString *suit;
 @property (nonatomic) NSUInteger rank;
-@property (nonatomic, strong) NSString *suit;
 @property (nonatomic) BOOL faceUp;
+@property (weak, nonatomic) id<GameViewControllerDelegate>delegate;
 
 @end

@@ -7,8 +7,11 @@
 //
 
 #import "CardGameViewController.h"
+#import "PlayingCardView.h"
+#import "GameViewControllerDelegate.h"
 
-@interface MatchismoGameViewController : UIViewController
+@interface MatchismoGameViewController : UIViewController <GameViewControllerDelegate>
 
+-(BOOL)flipCard:(UIView *)cardView;
 
 @end
