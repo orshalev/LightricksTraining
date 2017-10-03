@@ -11,6 +11,7 @@
 
 @protocol GameViewControllerDelegate <NSObject>
 
--(BOOL)flipCard:(UIView *)cardView;
+-(void)tapCard:(UIView *)cardView;
+-(void)panCard:(UIPanGestureRecognizer *)sender;
 
 @end

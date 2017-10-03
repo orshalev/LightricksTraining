@@ -30,11 +30,9 @@ extern const float kCornerRadius = 12.0;
 
 -(void)setFaceUp:(BOOL)faceUp {
   if(faceUp == self.faceUp) {
-    // Animate no flipping?
     return;
   }
   _faceUp = faceUp;
-  // Animate flipping.
   [self setNeedsDisplay];
 }
 
@@ -107,10 +105,14 @@ extern const float kCornerRadius = 12.0;
 #pragma mark - Gestures
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
-  //PlayingCardView *cardView = (PlayingCardView *)recognizer.view;
-  self.faceUp = [delegate flipCard:self];
+  [delegate tapCard:self];
 }
 
+#pragma mark - Gestures
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer
+{
+  [delegate panCard:recognizer];
+}
 
 #pragma mark - Initialization
 -(void)awakeFromNib {
@@ -127,6 +129,11 @@ extern const float kCornerRadius = 12.0;
   [[UITapGestureRecognizer alloc] initWithTarget:self
                                           action:@selector(handleSingleTap:)];
   [self addGestureRecognizer:singleFingerTap];
+
+  UIPanGestureRecognizer *pan =
+  [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                          action:@selector(handlePan:)];
+  [self addGestureRecognizer:pan];
 
 }
 

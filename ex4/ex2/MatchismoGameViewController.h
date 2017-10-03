@@ -12,6 +12,4 @@
 
 @interface MatchismoGameViewController : UIViewController <GameViewControllerDelegate>
 
--(BOOL)flipCard:(UIView *)cardView;
-
 @end

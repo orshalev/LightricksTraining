@@ -79,9 +79,6 @@ static const int COST_TO_CHOOSE = 1;
     return;
   }
 
-  NSString *info = [NSString stringWithFormat:@"Chosen card %@ - Choice panelty of %d points.\n", [card contents], COST_TO_CHOOSE];
-  self.score -= COST_TO_CHOOSE;
-
   NSMutableArray<Card *> *chosenCards = [[NSMutableArray<Card *> alloc] init];
   for (Card *otherCard in self.cards) {
     if (otherCard.isChosen && !otherCard.isMatched) {
@@ -93,6 +90,9 @@ static const int COST_TO_CHOOSE = 1;
     self.actionInfo = [NSString stringWithFormat:@"Unchoose a card before choosing a new one."];
     return;
   }
+
+  NSString *info = [NSString stringWithFormat:@"Chosen card %@ - Choice panelty of %d points.\n", [card contents], COST_TO_CHOOSE];
+  self.score -= COST_TO_CHOOSE;
   
   card.chosen = YES;
 
