@@ -28,7 +28,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 @property (strong, nonatomic) Grid* grid;
 
 @property (strong, nonatomic) UIDynamicAnimator *animator;
-@property (strong, nonatomic) NSMutableArray<UIAttachmentBehavior *> *attachments;
+@property (strong, nonatomic) UIAttachmentBehavior *attachment;
 
 @property (nonatomic) BOOL stacked;
 
@@ -79,13 +79,6 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 -(void)initCards {
   self.activeCardsIndexes = [[NSMutableIndexSet alloc] init];
   [self.activeCardsIndexes addIndexesInRange:NSMakeRange(0, kInitialMatchismoCardCount)];
-}
-
--(NSMutableArray<UIAttachmentBehavior *> *)attachments {
-  if (!_attachments) {
-    _attachments = [[NSMutableArray alloc] init];
-  }
-  return _attachments;
 }
 
 - (UIDynamicAnimator *)animator {
@@ -200,7 +193,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   CGPoint gesturePoint = [sender locationInView:self.view];
   if (sender.state == UIGestureRecognizerStateBegan) {
     [self animatePinchGroupCards:gesturePoint];
-    //[self attachCardsToPoint:gesturePoint];
+    [self attachCardsToPoint:gesturePoint];
   } else if (sender.state == UIGestureRecognizerStateChanged) {
     //[self attachCardsToPoint:gesturePoint];
   } else if (sender.state == UIGestureRecognizerStateEnded) {
@@ -214,22 +207,9 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   }
   CGPoint gesturePoint = [sender locationInView:self.view];
   if (sender.state == UIGestureRecognizerStateBegan) {
-    [self attachCardsToPoint:gesturePoint];
+    [self moveCardStackToPoint:gesturePoint];
   } else if (sender.state == UIGestureRecognizerStateChanged) {
-    [self attachCardsToPoint:gesturePoint];
-  } else if (sender.state == UIGestureRecognizerStateEnded) {
-    [self removeAttachmentCards];
-  }
-}
-
-- (IBAction)panStack:(UIPanGestureRecognizer *)sender {
-  CGPoint gesturePoint = [sender locationInView:self.view];
-  if (sender.state == UIGestureRecognizerStateBegan) {
-    [self attachCardsToPoint:gesturePoint];
-  } else if (sender.state == UIGestureRecognizerStateChanged) {
-    [self attachCardsToPoint:gesturePoint];
-  } else if (sender.state == UIGestureRecognizerStateEnded) {
-    [self removeAttachmentCards];
+    [self moveCardStackToPoint:gesturePoint];
   }
 }
 
@@ -260,6 +240,20 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 
 
 - (void)attachCardsToPoint:(CGPoint)point {
+
+  UIDynamicItemGroup *viewsDynasmicGroup = [[UIDynamicItemGroup alloc] initWithItems:self.cardViews];
+  UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:viewsDynasmicGroup attachedToAnchor:point];
+  [self.animator addBehavior:attachment];
+  self.attachment = attachment;
+}
+
+
+
+- (void)moveCardStackToPoint:(CGPoint)point {
+  self.attachment.anchorPoint = point;
+}
+/*
+- (void)attachCardsToPoint:(CGPoint)point {
   [self removeAttachmentCards];
   NSUInteger idx = self.activeCardsIndexes.firstIndex;
   CGPoint offset = point;
@@ -274,13 +268,10 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 
     idx = [self.activeCardsIndexes indexGreaterThanIndex:idx];
   }
-}
+}*/
 
 - (void)removeAttachmentCards {
-  for (UIAttachmentBehavior *attachment in self.attachments) {
-    [self.animator removeBehavior:attachment];
-  }
-  self.attachments = nil;
+  [self.animator removeBehavior:self.attachment];
 }
 
 
@@ -328,10 +319,6 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
   UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]
                                                initWithTarget:self action:@selector(pinch:)];
   [self.view addGestureRecognizer:pinchRecognizer];
-
-  UIPanGestureRecognizer *panStackRecognizer = [[UIPanGestureRecognizer alloc]
-                                                initWithTarget:self action:@selector(panStack:)];
-  [self.view addGestureRecognizer:panStackRecognizer];
 
   [self initNewGame];
   // Do any additional setup after loading the view.
