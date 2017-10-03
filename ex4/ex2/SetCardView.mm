@@ -27,11 +27,9 @@ extern const float kSetCornerRadius = 12.0;
 @end
 
 @implementation SetCardView
-
+@synthesize delegate;
 
 #pragma mark - Properties
-
-
 -(void)setNumber:(NSUInteger)number {
   _number = number;
   [self setNeedsDisplay];
@@ -52,6 +50,14 @@ extern const float kSetCornerRadius = 12.0;
   [self setNeedsDisplay];
 }
 
+-(void)setChosen:(BOOL)chosen {
+  if(self.isChosen == chosen) {
+    return;
+  }
+  _isChosen = chosen;
+  [self setNeedsDisplay];
+}
+
 
 #pragma mark - Drawing
 - (void)drawRect:(CGRect)rect {
@@ -59,16 +65,17 @@ extern const float kSetCornerRadius = 12.0;
                                                          cornerRadius:[self cornerRadius]];
   [roundedRect addClip];
 
-  [[UIColor whiteColor] setFill];
+  UIColor *mercuryColor = [UIColor colorWithWhite:0.92 alpha:1.0];//[UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
+  UIColor *fillColor = self.isChosen ? mercuryColor : [UIColor whiteColor];
+  [fillColor setFill];
   UIRectFill(self.bounds);
 
-  [[UIColor blackColor] setStroke];
+  UIColor *strokeColor = self.isChosen ? [UIColor blueColor] : [UIColor blackColor];
+  [strokeColor setStroke];
   [roundedRect stroke];
 
   [self drawPips];
 }
-
-
 
 - (void)drawPips {
   for (NSUInteger i = 0; i < [self number]; i++) {
@@ -231,7 +238,16 @@ extern const float kSetCornerRadius = 12.0;
   return self.bounds.size.height / kSetCornerFontStandardHeight;
 }
 
+#pragma mark - Gestures
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+  [delegate tapCard:self];
+}
 
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer
+{
+  [delegate panCard:recognizer];
+}
 
 #pragma mark - Initialization
 -(void)awakeFromNib {
@@ -243,6 +259,16 @@ extern const float kSetCornerRadius = 12.0;
   self.backgroundColor = nil;
   self.opaque = NO;
   self.contentMode = UIViewContentModeRedraw;
+
+  UITapGestureRecognizer *singleFingerTap =
+  [[UITapGestureRecognizer alloc] initWithTarget:self
+                                          action:@selector(handleSingleTap:)];
+  [self addGestureRecognizer:singleFingerTap];
+
+  UIPanGestureRecognizer *pan =
+  [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                          action:@selector(handlePan:)];
+  [self addGestureRecognizer:pan];
 }
 
 

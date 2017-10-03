@@ -48,10 +48,7 @@
   for (SetCard *otherCard in otherCards) {
     [attributeSet addObject:[NSNumber numberWithUnsignedInteger: otherCard.number]];
   }
-  if ([attributeSet count] != 1 && [attributeSet count] != SET_NUMBER_OF_ATTRIBUTE_VALUES) {
-    return YES;
-  }
-  return NO;
+  return [attributeSet count] == 1 || [attributeSet count] == SET_NUMBER_OF_ATTRIBUTE_VALUES;
 }
 
 - (BOOL)isMatchSymbol:(NSArray<SetCard *> *)otherCards {
@@ -61,10 +58,7 @@
   for (SetCard *otherCard in otherCards) {
     [attributeSet addObject:[NSNumber numberWithUnsignedInteger: otherCard.symbol]];
   }
-  if ([attributeSet count] != 1 && [attributeSet count] != SET_NUMBER_OF_ATTRIBUTE_VALUES) {
-    return YES;
-  }
-  return NO;
+  return [attributeSet count] == 1 || [attributeSet count] == SET_NUMBER_OF_ATTRIBUTE_VALUES;
 }
 
 - (BOOL)isMatchStriping:(NSArray<SetCard *> *)otherCards {
@@ -74,10 +68,7 @@
   for (SetCard *otherCard in otherCards) {
     [attributeSet addObject:[NSNumber numberWithUnsignedInteger: otherCard.striping]];
   }
-  if ([attributeSet count] != 1 && [attributeSet count] != SET_NUMBER_OF_ATTRIBUTE_VALUES) {
-    return YES;
-  }
-  return NO;
+  return [attributeSet count] == 1 || [attributeSet count] == SET_NUMBER_OF_ATTRIBUTE_VALUES;
 }
 
 - (BOOL)isMatchColor:(NSArray<SetCard *> *)otherCards {
@@ -87,10 +78,7 @@
   for (SetCard *otherCard in otherCards) {
     [attributeSet addObject:otherCard.color];
   }
-  if ([attributeSet count] != 1 && [attributeSet count] != SET_NUMBER_OF_ATTRIBUTE_VALUES) {
-    return YES;
-  }
-  return NO;
+  return [attributeSet count] == 1 || [attributeSet count] == SET_NUMBER_OF_ATTRIBUTE_VALUES;
 }
 
 

@@ -57,6 +57,14 @@
   return _actionInfo;
 }
 
+- (NSUInteger)drawCardUsingDeckAndReturnIndex:(Deck*)deck {
+  Card *card = [deck drawRandomCard];
+  if (card) {
+    [self.cards addObject:card];
+  }
+  return [self.cards indexOfObject:card];
+}
+
 - (Card *)cardAtIndex:(NSUInteger)index {
   return (index < [self.cards count]) ? self.cards[index] : nil;
 }

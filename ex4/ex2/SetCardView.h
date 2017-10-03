@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SetCard.h"
+#import "GameViewControllerDelegate.h"
 
 #define SET_NUMBER_OF_ATTRIBUTE_VALUES 3
 
@@ -31,5 +31,8 @@ typedef NS_ENUM(NSUInteger, SetStriping) {
 @property (nonatomic) SetSymbol symbol;
 @property (nonatomic) SetStriping striping;
 @property (nonatomic) UIColor *color;
+@property (nonatomic) BOOL isChosen;
+@property (nonatomic) NSUInteger cardNum;
+@property (weak, nonatomic) id<GameViewControllerDelegate>delegate;
 
 @end

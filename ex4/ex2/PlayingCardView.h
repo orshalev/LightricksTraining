@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PlayingCard.h"
-#import "MatchismoGameViewController.h"
 #import "GameViewControllerDelegate.h"
 
 @interface PlayingCardView : UIView

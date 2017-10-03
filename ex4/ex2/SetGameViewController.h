@@ -7,10 +7,8 @@
 //
 
 #import "CardGameViewController.h"
+#import "GameViewControllerDelegate.h"
 
-@interface SetGameViewController : UIViewController
-
-
-
+@interface SetGameViewController : UIViewController <GameViewControllerDelegate>
 
 @end

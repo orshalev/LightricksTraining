@@ -7,7 +7,6 @@
 //
 
 #import "CardGameViewController.h"
-#import "PlayingCardView.h"
 #import "GameViewControllerDelegate.h"
 
 @interface MatchismoGameViewController : UIViewController <GameViewControllerDelegate>

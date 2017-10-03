@@ -17,7 +17,6 @@ extern const float kCornerRadius = 12.0;
 @synthesize delegate;
 
 #pragma mark - Properties
-
 -(void)setRank:(NSUInteger)rank {
   _rank = rank;
   [self setNeedsDisplay];
@@ -108,7 +107,6 @@ extern const float kCornerRadius = 12.0;
   [delegate tapCard:self];
 }
 
-#pragma mark - Gestures
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer
 {
   [delegate panCard:recognizer];
