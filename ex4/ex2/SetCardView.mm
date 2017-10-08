@@ -51,10 +51,10 @@ extern const float kSetCornerRadius = 12.0;
 }
 
 -(void)setChosen:(BOOL)chosen {
-  if(self.isChosen == chosen) {
+  if(self.chosen == chosen) {
     return;
   }
-  _isChosen = chosen;
+  _chosen = chosen;
   [self setNeedsDisplay];
 }
 
@@ -66,11 +66,11 @@ extern const float kSetCornerRadius = 12.0;
   [roundedRect addClip];
 
   UIColor *mercuryColor = [UIColor colorWithWhite:0.92 alpha:1.0];//[UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
-  UIColor *fillColor = self.isChosen ? mercuryColor : [UIColor whiteColor];
+  UIColor *fillColor = self.chosen ? mercuryColor : [UIColor whiteColor];
   [fillColor setFill];
   UIRectFill(self.bounds);
 
-  UIColor *strokeColor = self.isChosen ? [UIColor blueColor] : [UIColor blackColor];
+  UIColor *strokeColor = self.chosen ? [UIColor blueColor] : [UIColor blackColor];
   [strokeColor setStroke];
   [roundedRect stroke];
 

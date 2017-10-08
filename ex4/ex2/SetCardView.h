@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, SetStriping) {
 @property (nonatomic) SetSymbol symbol;
 @property (nonatomic) SetStriping striping;
 @property (nonatomic) UIColor *color;
-@property (nonatomic) BOOL isChosen;
+@property (nonatomic) BOOL chosen;
 @property (nonatomic) NSUInteger cardNum;
 @property (weak, nonatomic) id<GameViewControllerDelegate>delegate;
 
