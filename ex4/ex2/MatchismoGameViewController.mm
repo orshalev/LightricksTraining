@@ -228,8 +228,7 @@ extern const NSInteger kInitialMatchismoCardCount = 30;
 }
 
 - (void)attachCardsToPoint:(CGPoint)point {
-
-  UIDynamicItemGroup *viewsDynasmicGroup = [[UIDynamicItemGroup alloc] initWithItems:self.cardViews];
+  UIDynamicItemGroup *viewsDynasmicGroup = [[UIDynamicItemGroup alloc] initWithItems:[self.cardViews objectsAtIndexes:self.activeCardsIndexes]];
   UIAttachmentBehavior *attachment = [[UIAttachmentBehavior alloc] initWithItem:viewsDynasmicGroup attachedToAnchor:point];
   [self.animator addBehavior:attachment];
   self.attachment = attachment;

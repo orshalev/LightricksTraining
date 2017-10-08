@@ -224,7 +224,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
@@ -240,7 +240,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528713426.986659"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -272,11 +272,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141526.866262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -384,7 +384,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528713426.986659"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -400,11 +400,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141526.866262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -416,7 +416,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528650969.866858"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
@@ -432,11 +432,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141446.386916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "-tapCard:"
             landmarkType = "7">
          </BreakpointContent>
@@ -448,7 +448,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528650969.866858"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -460,7 +460,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/CardMatchingGame.mm"
@@ -480,11 +480,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141526.866262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "-updateUI"
             landmarkType = "7">
          </BreakpointContent>
@@ -496,11 +496,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141446.386916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-tapCard:"
             landmarkType = "7">
          </BreakpointContent>
@@ -512,23 +512,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-tapCard:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141446.386916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "162"
@@ -544,7 +528,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141446.386916"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-tapCard:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ex2/MatchismoGameViewController.mm"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "136"
@@ -560,7 +560,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529140614.008259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "129"
@@ -576,11 +576,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141526.866262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "-updateUI"
             landmarkType = "7">
          </BreakpointContent>
@@ -608,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141526.866262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "-removeAttachmentCards"
             landmarkType = "7">
          </BreakpointContent>
@@ -624,11 +624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141526.866262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-viewDidLayoutSubviews"
             landmarkType = "7">
          </BreakpointContent>
@@ -640,11 +640,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/MatchismoGameViewController.mm"
-            timestampString = "528722621.310034"
+            timestampString = "529141446.386916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-panCard:"
             landmarkType = "7">
          </BreakpointContent>
@@ -688,43 +688,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ex2/SetGameViewController.mm"
-            timestampString = "528738251.369725"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "-tapCard:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ex2/SetGameViewController.mm"
-            timestampString = "528738251.369725"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-tapCard:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ex2/SetGameViewController.mm"
-            timestampString = "528738251.369725"
+            timestampString = "528738768.013884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
             endingLineNumber = "169"
+            landmarkName = "-tapCard:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ex2/SetGameViewController.mm"
+            timestampString = "528738768.013884"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-tapCard:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ex2/SetGameViewController.mm"
+            timestampString = "528738768.013884"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "-tapCard:"
             landmarkType = "7">
          </BreakpointContent>
@@ -774,6 +774,22 @@
             startingLineNumber = "244"
             endingLineNumber = "244"
             landmarkName = "-handleSingleTap:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ex2/MatchismoGameViewController.mm"
+            timestampString = "529141446.386916"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-pinch:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
